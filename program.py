@@ -164,7 +164,7 @@ class Assignment:
 class Program:
     statements: list[Assignment]
 
-    def execute(self, tokens) -> bool:
+    def execute(self, tokens, verbose=False) -> bool:
         env = Environment(tokens)
         most_recent_value = None
 
@@ -173,9 +173,10 @@ class Program:
             env.vars[assignment.variable] = val
             most_recent_value = val
 
-            print(assignment.variable)
-            print(val)
-            print()
+            if verbose:
+                print(assignment.variable)
+                print(val)
+                print()
 
         return most_recent_value[-1]
 

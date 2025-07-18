@@ -7,5 +7,5 @@ program : Program = parse_file(sys.argv[1])
 
 tokens = "(()())"
 
-print(program.execute(tokens))
+print(program.execute(tokens, verbose=True))
 
