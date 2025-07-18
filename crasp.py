@@ -48,7 +48,7 @@ def parse_args():
 
 args = parse_args()
 program = parse_file(args.c_rasp_file)
-tokens = args.tokens.split(" ")
+tokens = args.tokens.strip().split()
 
 # tokens = "(()())"
 
