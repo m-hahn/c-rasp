@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from typing import Union
 
+from tracing import Trace
 
 
 @dataclass
@@ -164,14 +165,20 @@ class Assignment:
 class Program:
     statements: list[Assignment]
 
-    def execute(self, tokens, verbose=False) -> bool:
+    def execute(self, tokens, verbose=False, tracing: Trace = None) -> bool:
         env = Environment(tokens)
         most_recent_value = None
+
+        if tracing is not None:
+            tracing.accept_tokens(tokens)
 
         for assignment in self.statements:
             val = assignment.expression.evaluate(env)
             env.vars[assignment.variable] = val
             most_recent_value = val
+
+            if tracing is not None:
+                tracing.accept(assignment.variable, val)
 
             if verbose:
                 print(assignment.variable)
