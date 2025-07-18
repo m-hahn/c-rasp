@@ -6,8 +6,8 @@ from antlr.craspParser import craspParser as CRaspParser
 from antlr.craspVisitor import craspVisitor as CRaspVisitor
 from program import *
 
-class MyCraspVisitor(CRaspVisitor):
 
+class MyCraspVisitor(CRaspVisitor):
     def visitProgram(self, ctx):
         stmts = [self.visit(s) for s in ctx.statement()]
         return Program(stmts)
@@ -120,19 +120,3 @@ def parse_file(filename) -> Program:
     ast : Program = visitor.visit(tree)
 
     return ast
-
-#     for assignment in ast.statements:
-#         print(assignment.variable)
-#         print(assignment.expression)
-#         print()
-
-
-#     # from pprint import pprint
-#     # pprint(ast)  # Or pretty print
-
-# if __name__ == '__main__':
-#     if len(sys.argv) > 1:
-#         input_stream = FileStream(sys.argv[1])
-#     else:
-#         input_stream = InputStream("your input text here")
-#     main(input_stream)

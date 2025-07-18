@@ -1,9 +1,4 @@
 import argparse
-import sys
-
-from fasttext_pybind import args
-
-from program import *
 from parser import parse_file
 from tracing import TraceToFile, TraceToHTML
 
