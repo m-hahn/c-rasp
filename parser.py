@@ -83,14 +83,14 @@ class MyCraspVisitor(CRaspVisitor):
             )
 
         elif ctx.MAX():
-            return MinMaxCall(
+            return BinaryOp(
                 op="max",
                 left=self.visit(ctx.count_expr(0)),
                 right=self.visit(ctx.count_expr(1))
             )
 
         elif ctx.MIN():
-            return MinMaxCall(
+            return BinaryOp(
                 op="min",
                 left=self.visit(ctx.count_expr(0)),
                 right=self.visit(ctx.count_expr(1))
