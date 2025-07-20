@@ -136,7 +136,7 @@ class MyCraspVisitor(CRaspVisitor):
 
 
 def parse_file(filename) -> Program:
-    input_stream = FileStream(filename)
+    input_stream = FileStream(filename, encoding="utf-8")
     lexer = CRaspLexer(input_stream)
     stream = CommonTokenStream(lexer)
     parser = CRaspParser(stream)
