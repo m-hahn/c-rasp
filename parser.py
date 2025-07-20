@@ -28,6 +28,13 @@ class MyCraspVisitor(CRaspVisitor):
                 right=self.visit(ctx.count_expr(1))
             )
 
+        elif ctx.GT():
+            return Comparison(
+                left=self.visit(ctx.count_expr(0)),
+                op=">",
+                right=self.visit(ctx.count_expr(1))
+            )
+
         elif ctx.EQ():
             return Comparison(
                 left=self.visit(ctx.count_expr(0)),
@@ -35,9 +42,31 @@ class MyCraspVisitor(CRaspVisitor):
                 right=self.visit(ctx.count_expr(1))
             )
 
+        elif ctx.LEQ():
+            return Comparison(
+                left=self.visit(ctx.count_expr(0)),
+                op="<=",
+                right=self.visit(ctx.count_expr(1))
+            )
+
+        elif ctx.GEQ():
+            return Comparison(
+                left=self.visit(ctx.count_expr(0)),
+                op=">=",
+                right=self.visit(ctx.count_expr(1))
+            )
+
         elif ctx.AND():
-            return AndExpr(
+            return BinaryBoolExpr(
                 left=self.visit(ctx.bool_expr(0)),
+                op="and",
+                right=self.visit(ctx.bool_expr(1))
+            )
+
+        elif ctx.OR():
+            return BinaryBoolExpr(
+                left=self.visit(ctx.bool_expr(0)),
+                op="or",
                 right=self.visit(ctx.bool_expr(1))
             )
 

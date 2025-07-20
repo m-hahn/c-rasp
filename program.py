@@ -1,5 +1,6 @@
-from dataclasses import dataclass
-from typing import Union
+import operator
+from dataclasses import dataclass, field
+from typing import Union, Callable
 
 from tracing import Trace
 
@@ -56,27 +57,41 @@ class NotExpr(BoolExpr):
         return [not x for x in self.expr.evaluate(env)]
 
 @dataclass
-class AndExpr(BoolExpr):
+class BinaryBoolExpr(BoolExpr):
     left: BoolExpr
+    op: str
     right: BoolExpr
+    _op: Callable = field(init=False)
+
+    def __post_init__(self):
+        if self.op == 'and':
+            self._op = lambda a, b: a and b
+        else: # or
+            self._op = lambda a, b: a or b
 
     def evaluate(self, env: Environment) -> list[bool]:
-        return [a and b for a, b in zip(self.left.evaluate(env), self.right.evaluate(env))]
+        return [self._op(a,b) for a, b in zip(self.left.evaluate(env), self.right.evaluate(env))]
+
+_comparison_dict = {
+    '==': operator.eq,
+    '<': operator.lt,
+    '>': operator.gt,
+    '<=': operator.le,
+    '>=': operator.ge
+}
 
 @dataclass
 class Comparison(BoolExpr):
     left: CountExpr
-    op: str  # '<' or '=='
+    op: str  # '<' or '==' or '<=' or ...
     right: CountExpr
+    _op: Callable  = field(init=False)
 
-    def compare(self, val1: int, val2: int) -> bool:
-        if self.op == "<":
-            return val1 < val2
-        else:
-            return val1 == val2
+    def __post_init__(self):
+        self._op = _comparison_dict[self.op]
 
     def evaluate(self, env: Environment) -> list[bool]:
-        return [self.compare(val1, val2) for val1, val2 in zip(self.left.evaluate(env), self.right.evaluate(env))]
+        return [self._op(val1, val2) for val1, val2 in zip(self.left.evaluate(env), self.right.evaluate(env))]
 
 
 
@@ -117,18 +132,21 @@ class Count(CountExpr):
 class BinaryOp(CountExpr):
     left: CountExpr
     op: str  # '+' or '-'  or 'min' or 'max'
-
     right: CountExpr
+    _op: Callable  = field(init=False)
+
+    def __post_init__(self):
+        if self.op == '+':
+            self._op = operator.add
+        elif self.op == '-':
+            self._op = operator.sub
+        elif self.op == 'min':
+            self._op = min
+        else: # max
+            self._op = max
 
     def combine(self, val1: int, val2: int) -> bool:
-        if self.op == "+":
-            return val1 + val2
-        elif self.op == "-":
-            return val1 - val2
-        elif self.op == "min":
-            return min(val1, val2)
-        else:
-            return max(val1, val2)
+        return self._op(val1, val2)
 
     def evaluate(self, env: Environment) -> list[int]:
         return [self.combine(val1, val2) for val1, val2 in zip(self.left.evaluate(env), self.right.evaluate(env))]
