@@ -39,6 +39,8 @@ count_expr:
 
 ////////////////////////////////////////////////
 
+// starts comments
+LINE_COMMENT: '//' ~[\r\n]* -> skip;
 
 VARIABLE: [a-zA-Z_][a-zA-Z_0-9]*;
 STRING_LITERAL: '"' (~["])* '"';

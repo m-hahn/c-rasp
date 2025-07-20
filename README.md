@@ -16,7 +16,7 @@ Write a C-RASP grammar and save it to a file. An example is in [dyck1_yc24.cr](h
 Run the interpreter as follows. Tokens are specified in a whitespace-separated string on the command line.
 
 ```
-python crasp.py -c dyck1_yc24.cr "( ( ) ( ) )" --tracing html --trace-file trace.html
+python crasp.py -c examples/dyck1_yc24.cr "( ( ) ( ) )" --tracing html --trace-file trace.html
 ```
 
 ## Tracing
@@ -27,4 +27,13 @@ evaluated to true or not. We interpret this as the program accepting the input t
 You can also save a trace of the intermediate results in a file. Specify `--tracing html` or `--tracing txt` to save the trace in
 a HTML file containing a table or a plain text file, and specify the filename with the `--trace-file` option. The trace file will
 show the list of variable assignments with their new values as they happen.
+
+
+
+## Recompiling the ANTLR parser
+
+```
+cd antlr
+java -jar antlr-4.13.1-complete.jar -Dlanguage=Python3 -visitor crasp.g4 
+```
 

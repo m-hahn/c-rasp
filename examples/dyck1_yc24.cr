@@ -1,4 +1,5 @@
-
+// C-RASP program for the Dyck language with one bracket pair
+// (from Yang & Chiang 2024)
 
 C_open = # "("
 C_close = # ")"
