@@ -12,7 +12,6 @@ import predefined
 class Environment:
     tokens: list[str]
     vars: dict[str, Union[list[bool], list[int]]] = field(default_factory=dict)
-    unary_function_values: dict[str, list[bool]] = field(default_factory=dict)  # values have been precalculated
     binary_functions: dict[str, Callable[[int, int], bool]] = field(default_factory=dict) # values have to evaluated at runtime
 
 
@@ -218,9 +217,9 @@ class Program:
             params = list(inspect.signature(func).parameters.values())
 
             if len(params) == 1:
-                # unary function - evaluate it on all input positions and store results
+                # unary function - evaluate it on all input positions and store results as variables
                 values = [func(i) for i in range(len(tokens))]
-                env.unary_function_values[imp] = values
+                env.vars[imp] = values
             elif len(params) == 2:
                 # binary function - store function itself
                 env.binary_functions[imp] = func
@@ -228,8 +227,6 @@ class Program:
         # set up tracing
         if tracing is not None:
             tracing.accept_tokens(tokens)
-
-        print(self.statements)
 
         # execute program
         for i, assignment in enumerate(self.statements):
