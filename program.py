@@ -73,6 +73,7 @@ class BinaryBoolExpr(BoolExpr):
 
 _comparison_dict = {
     '==': operator.eq,
+    '!=': operator.ne,
     '<': operator.lt,
     '>': operator.gt,
     '<=': operator.le,

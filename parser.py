@@ -52,6 +52,13 @@ class MyCraspVisitor(CRaspVisitor):
                 right=self.visit(ctx.count_expr(1))
             )
 
+        elif ctx.NEQ():
+            return Comparison(
+                left=self.visit(ctx.count_expr(0)),
+                op="!=",
+                right=self.visit(ctx.count_expr(1))
+            )
+
         elif ctx.LEQ():
             return Comparison(
                 left=self.visit(ctx.count_expr(0)),

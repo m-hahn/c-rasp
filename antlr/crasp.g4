@@ -16,6 +16,7 @@ bool_expr:
     | count_expr LT count_expr
     | count_expr GT count_expr
     | count_expr EQ count_expr
+    | count_expr NEQ count_expr
     | count_expr LEQ count_expr
     | count_expr GEQ count_expr
     | bool_expr AND bool_expr
@@ -64,6 +65,7 @@ OR : '||';
 NOT : '!' ;
 
 EQ : '==' ;
+NEQ : '!=' ;
 LT : '<';
 GT: '>';
 LEQ: '<=';
@@ -78,8 +80,6 @@ MIN: 'min';
 MAX: 'max';
 
 COUNT : '#';
-//LSQBK: '[';
-//RSQBK: ']';
 
 LPAREN : '(' ;
 RPAREN : ')' ;
