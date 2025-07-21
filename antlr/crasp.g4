@@ -6,8 +6,10 @@ program
     ;
 
 statement: 
-    VARIABLE ASSIGN 
-    (bool_expr | count_expr);
+    VARIABLE ASSIGN (bool_expr | count_expr)
+    | IMPORT VARIABLE
+    ;
+
 
 bool_expr:
     STRING_LITERAL
@@ -27,6 +29,7 @@ bool_expr:
     
 count_expr:
     COUNT bool_expr
+    | COUNT '[' VARIABLE ']' bool_expr
     | VARIABLE
     | INT_LITERAL
     | count_expr PLUS count_expr
@@ -44,6 +47,8 @@ count_expr:
 
 // starts comments
 LINE_COMMENT: '//' ~[\r\n]* -> skip;
+
+IMPORT: '#import';
 
 VARIABLE: [a-zA-Z_][a-zA-Z_0-9]*;
 STRING_LITERAL: '"' (~["])* '"';
@@ -73,6 +78,8 @@ MIN: 'min';
 MAX: 'max';
 
 COUNT : '#';
+//LSQBK: '[';
+//RSQBK: ']';
 
 LPAREN : '(' ;
 RPAREN : ')' ;

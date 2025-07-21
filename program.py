@@ -1,19 +1,19 @@
 import operator
+import sys
+import traceback
 from dataclasses import dataclass, field
 from typing import Union, Callable
+import inspect
 
 from tracing import Trace
-
+import predefined
 
 @dataclass
 class Environment:
     tokens: list[str]
-    vars: dict[str, Union[list[bool], list[int]]]
-
-    def __init__(self, tokens):
-        self.tokens = tokens
-        self.vars = {}
-
+    vars: dict[str, Union[list[bool], list[int]]] = field(default_factory=dict)
+    unary_function_values: dict[str, list[bool]] = field(default_factory=dict)  # values have been precalculated
+    binary_functions: dict[str, Callable[[int, int], bool]] = field(default_factory=dict) # values have to evaluated at runtime
 
 
 class BoolExpr:
@@ -129,6 +129,29 @@ class Count(CountExpr):
         return counts
 
 @dataclass
+class GuardedCount(CountExpr):
+    guard: str
+    expr: BoolExpr
+
+    def evaluate(self, env: Environment) -> list[int]:
+        bools: list[bool] = self.expr.evaluate(env) # value of expr at each position
+        counts: list[int] = []
+
+        guard_func = env.binary_functions[self.guard]
+
+        for i, val in enumerate(bools):
+            count_of_trues = 0
+
+            for j in range(i+1):
+                if bools[j] and guard_func(i, j):
+                    count_of_trues += 1
+
+            counts.append(count_of_trues)
+
+        return counts
+
+
+@dataclass
 class BinaryOp(CountExpr):
     left: CountExpr
     op: str  # '+' or '-'  or 'min' or 'max'
@@ -182,26 +205,52 @@ class Assignment:
 @dataclass
 class Program:
     statements: list[Assignment]
+    imports: list[str]
 
     def execute(self, tokens, verbose=False, tracing: Trace = None) -> bool:
+        # initialize empty environment with the given tokens
         env = Environment(tokens)
         most_recent_value = None
 
+        # import predefined functions
+        for imp in self.imports:
+            func = getattr(predefined, imp)
+            params = list(inspect.signature(func).parameters.values())
+
+            if len(params) == 1:
+                # unary function - evaluate it on all input positions and store results
+                values = [func(i) for i in range(len(tokens))]
+                env.unary_function_values[imp] = values
+            elif len(params) == 2:
+                # binary function - store function itself
+                env.binary_functions[imp] = func
+
+        # set up tracing
         if tracing is not None:
             tracing.accept_tokens(tokens)
 
-        for assignment in self.statements:
-            val = assignment.expression.evaluate(env)
-            env.vars[assignment.variable] = val
-            most_recent_value = val
+        print(self.statements)
 
-            if tracing is not None:
-                tracing.accept(assignment.variable, val)
+        # execute program
+        for i, assignment in enumerate(self.statements):
+            try:
 
-            if verbose:
-                print(assignment.variable)
-                print(val)
-                print()
+                val = assignment.expression.evaluate(env)
+                env.vars[assignment.variable] = val
+                most_recent_value = val
+
+                if tracing is not None:
+                    tracing.accept(assignment.variable, val)
+
+                if verbose:
+                    print(assignment.variable)
+                    print(val)
+                    print()
+
+            except Exception as e:
+                print(f"Exception in statement {i+1}:", file=sys.stderr)
+                print(f"Statement: {assignment}", file=sys.stderr)
+                traceback.print_exc()
+                sys.exit(1)
 
         return most_recent_value[-1]
-

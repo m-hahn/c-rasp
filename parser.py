@@ -8,14 +8,24 @@ from program import *
 
 
 class MyCraspVisitor(CRaspVisitor):
+    imports: list[str] = []
+
     def visitProgram(self, ctx):
         stmts = [self.visit(s) for s in ctx.statement()]
-        return Program(stmts)
+        stmts = [s for s in stmts if s is not None]
+        return Program(stmts, self.imports)
 
     def visitStatement(self, ctx):
-        var = ctx.VARIABLE().getText()
-        expr = self.visit(ctx.getChild(2))
-        return Assignment(var, expr)
+        if ctx.IMPORT():
+            # Handle the import statement: 'IMPORT VARIABLE'
+            var_name = ctx.VARIABLE().getText()
+            self.imports.append(var_name)
+            return None
+        else:
+            # Handle the assignment: 'VARIABLE ASSIGN (bool_expr | count_expr)'
+            var_name = ctx.VARIABLE().getText()
+            expr = self.visit(ctx.getChild(2))
+            return Assignment(var_name, expr)
 
     def visitBool_expr(self, ctx):
         if ctx.STRING_LITERAL():
@@ -88,7 +98,13 @@ class MyCraspVisitor(CRaspVisitor):
 
     def visitCount_expr(self, ctx):
         if ctx.COUNT():
-            return Count(self.visit(ctx.bool_expr()))
+            if ctx.VARIABLE():  # means it's: COUNT '[' VARIABLE ']' bool_expr
+                var = ctx.VARIABLE().getText()
+                expr = self.visit(ctx.bool_expr())
+                return GuardedCount(var, expr)
+            else:  # just: COUNT bool_expr
+                expr = self.visit(ctx.bool_expr())
+                return Count(expr)
 
         elif ctx.IF():
             return IfExpr(
