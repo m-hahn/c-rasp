@@ -38,10 +38,10 @@ class TraceToFile(Trace):
 
 class TraceToHTML(Trace):
     num_tokens = 0
+    first = True
 
     def __init__(self, filename):
         self.file = open(filename, 'w')
-
         self.file.write("<table border='1'>\n")
 
     def write_list(self, list, markup=lambda x: x):
@@ -51,8 +51,12 @@ class TraceToHTML(Trace):
         self.file.write("</tr>\n")
 
     def accept_tokens(self, tokens):
+        if not self.first:
+            self.file.write("</table><table border='1'>\n")
+
         self.write_list([""] + list(tokens))
         self.num_tokens = len(tokens)
+        self.first = False
 
     def accept(self, variable, value):
         self.write_list([variable] + value)

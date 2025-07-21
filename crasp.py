@@ -1,4 +1,6 @@
 import argparse
+import sys
+
 from parser import parse_file
 from tracing import TraceToFile, TraceToHTML
 
@@ -16,6 +18,8 @@ def parse_args():
     # Mandatory: tokens from command-line argument
     parser.add_argument(
         "tokens",
+        nargs="?",
+        default=None,
         help="Whitespace-separated list of tokens (e.g. '( ( ) )')"
     )
 
@@ -43,19 +47,32 @@ def parse_args():
 
 args = parse_args()
 program = parse_file(args.c_rasp_file)
-tokens = args.tokens.strip().split()
+
+if args.tokens is not None:
+    input_iterable = [args.tokens]
+else:
+    input_iterable = sys.stdin
+
+# tokens = args.tokens.strip().split()
 
 # tokens = "(()())"
 
+tr = None
 if args.tracing == "txt":
-    with TraceToFile(args.trace_file) as tr:
-        print(program.execute(tokens, tracing=tr))
-    print(f"Trace written to {args.trace_file}")
-
+    tr = TraceToFile(args.trace_file)
 elif args.tracing == "html":
-    with TraceToHTML(args.trace_file) as tr:
-        print(program.execute(tokens, tracing=tr))
+    tr = TraceToHTML(args.trace_file)
+
+input_id = 1
+for line in input_iterable:
+    if not line.startswith("//"):
+        tokens = line.strip().split()
+        if len(tokens) > 0:
+            result = program.execute(tokens, tracing=tr)
+            print(f"{input_id} {line.strip()}: {result}")
+            input_id += 1
+
+if tr is not None:
+    tr.close()
     print(f"Trace written to {args.trace_file}")
 
-else:
-    print(program.execute(tokens))
