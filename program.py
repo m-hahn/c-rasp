@@ -250,4 +250,7 @@ class Program:
                 traceback.print_exc()
                 sys.exit(1)
 
+        if tracing is not None:
+            tracing.accept_result(most_recent_value[-1])
+
         return most_recent_value[-1]
