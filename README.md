@@ -16,13 +16,13 @@ Write a C-RASP grammar and save it to a file. An example is in [dyck1_yc24.cr](h
 Run the interpreter as follows. Tokens are specified in a whitespace-separated string on the command line.
 
 ```
-python crasp.py -c examples/dyck1_yc24.cr "( ( ) ( ) )" --tracing html --trace-file trace.html
+python crasp.py -c examples/dyck1_yc24.cr "( ( ) ( ) )" -t trace.html
 ```
 
 Instead of passing tokens on the command line, you can also read them from stdin. This can be useful if you want to run the C-RASP program against an entire testsuite.
 
 ```
-python crasp.py -c examples/count3_yc24.cr --tracing html --trace-file trace.html < examples/count3_examples.txt
+python crasp.py -c examples/count3_yc24.cr -t trace.html < examples/count3_examples.txt
 ```
 
 The interpreter will run the given C-RASP program on every nonempty line that does not start with `//`, and will generate one line of output per input instance. If you ask for tracing (see below), the trace file will contain a trace for each input instance.
@@ -33,8 +33,8 @@ The interpreter will run the given C-RASP program on every nonempty line that do
 The interpreter will print `True` or `False` to the command line, depending on whether the last position of the final expression
 evaluated to true or not. We interpret this as the program accepting the input tokens.
 
-You can also save a trace of the intermediate results in a file. Specify `--tracing html` or `--tracing txt` to save the trace in
-a HTML file containing a table or a plain text file, and specify the filename with the `--trace-file` option. The trace file will
+You can also save a trace of the intermediate results in a file. Specify `-t filename.txt` to save the trace in a plain text file
+or `-t filename.html` to save it in an HTML table that you can inspect with a browser. The trace file will
 show the list of variable assignments with their new values as they happen.
 
 

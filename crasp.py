@@ -23,44 +23,40 @@ def parse_args():
         help="Whitespace-separated list of tokens (e.g. '( ( ) )')"
     )
 
-    # Optional: tracing type
-    parser.add_argument(
-        "--tracing",
-        choices=["txt", "html"],
-        help="Tracing output type (txt or html)"
-    )
+    # # Optional: tracing type
+    # parser.add_argument(
+    #     "--tracing",
+    #     choices=["txt", "html"],
+    #     help="Tracing output type (txt or html)"
+    # )
 
     # Conditionally required: trace filename
     parser.add_argument(
-        "--trace-file",
-        help="Filename for tracing output (required if --trace-type is given)"
+        "-t", "--trace-file",
+        default=None,
+        help="Filename for tracing output (use filename extensions *.txt or *.html or *.htm)"
     )
 
     args = parser.parse_args()
 
-    # Enforce: if trace-type is given, trace-file must be given
-    if args.tracing and not args.trace_file:
-        parser.error("--trace-file is required when --tracing is specified")
-
     return args
 
 
+# read program
 args = parse_args()
 program = parse_file(args.c_rasp_file)
 
+# prepare input
 if args.tokens is not None:
     input_iterable = [args.tokens]
 else:
     input_iterable = sys.stdin
 
-# tokens = args.tokens.strip().split()
-
-# tokens = "(()())"
-
+# set up tracing
 tr = None
-if args.tracing == "txt":
+if args.trace_file.lower().endswith(".txt"):
     tr = TraceToFile(args.trace_file)
-elif args.tracing == "html":
+elif args.trace_file.lower().endswith(".html") or args.trace_file.lower().endswith(".htm"):
     tr = TraceToHTML(args.trace_file)
 
 input_id = 1
