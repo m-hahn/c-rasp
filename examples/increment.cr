@@ -22,6 +22,5 @@ incremented_is_zero = !incremented_is_one
 // check if output string matches incremented string
 num_ones_match = #("1" && ((#[pred4] incremented_is_one) > 0))     // how many positions (in second half) are 1 and should be?
 num_zeroes_match = #("0" && ((#[pred4] incremented_is_zero) > 0))  // same for zeroes
-num_matches = num_ones_match + num_zeroes_match
-copies_complete = (num_matches + num_matches == token_count)
+copies_complete = (2*(num_ones_match + num_zeroes_match) == token_count)
 

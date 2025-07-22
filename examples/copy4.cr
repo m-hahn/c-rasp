@@ -11,4 +11,4 @@ is_c_copy = "c" && ((#[pred4] "c") == 1)
 token_count = #true
 
 num_copies = #is_a_copy + #is_b_copy + #is_c_copy
-copies_complete = (num_copies + num_copies == token_count)
+copies_complete = (2*num_copies == token_count)

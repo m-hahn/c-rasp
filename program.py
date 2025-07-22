@@ -175,6 +175,14 @@ class BinaryOp(CountExpr):
         return [self.combine(val1, val2) for val1, val2 in zip(self.left.evaluate(env), self.right.evaluate(env))]
 
 @dataclass
+class MultiplicationOp(CountExpr):
+    factor: int
+    expr: CountExpr
+
+    def evaluate(self, env: Environment) -> list[int]:
+        return [self.factor * val for val in self.expr.evaluate(env)]
+
+@dataclass
 class IfExpr(CountExpr):
     then_branch: CountExpr
     condition: BoolExpr

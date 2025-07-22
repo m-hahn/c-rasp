@@ -35,6 +35,7 @@ count_expr:
     | INT_LITERAL
     | count_expr PLUS count_expr
     | count_expr MINUS count_expr
+    | INT_LITERAL TIMES count_expr
     | MAX LPAREN count_expr COMMA count_expr RPAREN
     | MIN LPAREN count_expr COMMA count_expr RPAREN
     | count_expr IF bool_expr ELSE count_expr // low precedence
@@ -80,6 +81,7 @@ QUESTION: '?';
 COLON: ':';
 PLUS: '+';
 MINUS: '-';
+TIMES: '*';
 
 COUNT : '#';
 

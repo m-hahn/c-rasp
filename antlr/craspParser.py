@@ -10,7 +10,7 @@ else:
 
 def serializedATN():
     return [
-        4,1,33,140,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,1,0,5,0,10,8,0,10,0,12,
+        4,1,34,143,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,1,0,5,0,10,8,0,10,0,12,
         0,13,9,0,1,0,1,0,4,0,17,8,0,11,0,12,0,18,1,0,5,0,22,8,0,10,0,12,
         0,25,9,0,1,0,5,0,28,8,0,10,0,12,0,31,9,0,1,0,1,0,1,1,1,1,1,1,1,1,
         3,1,39,8,1,1,1,1,1,3,1,43,8,1,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,
@@ -18,46 +18,48 @@ def serializedATN():
         2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,3,2,80,8,2,1,2,1,2,1,2,
         1,2,1,2,1,2,5,2,88,8,2,10,2,12,2,91,9,2,1,3,1,3,1,3,1,3,1,3,1,3,
         1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,
-        1,3,1,3,1,3,1,3,1,3,1,3,3,3,121,8,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,
-        1,3,1,3,1,3,1,3,1,3,5,3,135,8,3,10,3,12,3,138,9,3,1,3,0,2,4,6,4,
-        0,2,4,6,0,0,163,0,11,1,0,0,0,2,42,1,0,0,0,4,79,1,0,0,0,6,120,1,0,
-        0,0,8,10,5,32,0,0,9,8,1,0,0,0,10,13,1,0,0,0,11,9,1,0,0,0,11,12,1,
-        0,0,0,12,14,1,0,0,0,13,11,1,0,0,0,14,23,3,2,1,0,15,17,5,32,0,0,16,
-        15,1,0,0,0,17,18,1,0,0,0,18,16,1,0,0,0,18,19,1,0,0,0,19,20,1,0,0,
-        0,20,22,3,2,1,0,21,16,1,0,0,0,22,25,1,0,0,0,23,21,1,0,0,0,23,24,
-        1,0,0,0,24,29,1,0,0,0,25,23,1,0,0,0,26,28,5,32,0,0,27,26,1,0,0,0,
-        28,31,1,0,0,0,29,27,1,0,0,0,29,30,1,0,0,0,30,32,1,0,0,0,31,29,1,
-        0,0,0,32,33,5,0,0,1,33,1,1,0,0,0,34,35,5,11,0,0,35,38,5,23,0,0,36,
-        39,3,4,2,0,37,39,3,6,3,0,38,36,1,0,0,0,38,37,1,0,0,0,39,43,1,0,0,
-        0,40,41,5,4,0,0,41,43,5,11,0,0,42,34,1,0,0,0,42,40,1,0,0,0,43,3,
-        1,0,0,0,44,45,6,2,-1,0,45,80,5,12,0,0,46,47,3,6,3,0,47,48,5,19,0,
-        0,48,49,3,6,3,0,49,80,1,0,0,0,50,51,3,6,3,0,51,52,5,20,0,0,52,53,
-        3,6,3,0,53,80,1,0,0,0,54,55,3,6,3,0,55,56,5,17,0,0,56,57,3,6,3,0,
-        57,80,1,0,0,0,58,59,3,6,3,0,59,60,5,18,0,0,60,61,3,6,3,0,61,80,1,
-        0,0,0,62,63,3,6,3,0,63,64,5,21,0,0,64,65,3,6,3,0,65,80,1,0,0,0,66,
-        67,3,6,3,0,67,68,5,22,0,0,68,69,3,6,3,0,69,80,1,0,0,0,70,71,5,16,
-        0,0,71,80,3,4,2,5,72,80,5,5,0,0,73,80,5,6,0,0,74,80,5,11,0,0,75,
-        76,5,29,0,0,76,77,3,4,2,0,77,78,5,30,0,0,78,80,1,0,0,0,79,44,1,0,
-        0,0,79,46,1,0,0,0,79,50,1,0,0,0,79,54,1,0,0,0,79,58,1,0,0,0,79,62,
-        1,0,0,0,79,66,1,0,0,0,79,70,1,0,0,0,79,72,1,0,0,0,79,73,1,0,0,0,
-        79,74,1,0,0,0,79,75,1,0,0,0,80,89,1,0,0,0,81,82,10,7,0,0,82,83,5,
-        14,0,0,83,88,3,4,2,8,84,85,10,6,0,0,85,86,5,15,0,0,86,88,3,4,2,7,
-        87,81,1,0,0,0,87,84,1,0,0,0,88,91,1,0,0,0,89,87,1,0,0,0,89,90,1,
-        0,0,0,90,5,1,0,0,0,91,89,1,0,0,0,92,93,6,3,-1,0,93,94,5,28,0,0,94,
-        121,3,4,2,0,95,96,5,28,0,0,96,97,5,1,0,0,97,98,5,11,0,0,98,99,5,
-        2,0,0,99,121,3,4,2,0,100,121,5,11,0,0,101,121,5,13,0,0,102,103,5,
-        10,0,0,103,104,5,29,0,0,104,105,3,6,3,0,105,106,5,31,0,0,106,107,
-        3,6,3,0,107,108,5,30,0,0,108,121,1,0,0,0,109,110,5,9,0,0,110,111,
-        5,29,0,0,111,112,3,6,3,0,112,113,5,31,0,0,113,114,3,6,3,0,114,115,
-        5,30,0,0,115,121,1,0,0,0,116,117,5,29,0,0,117,118,3,6,3,0,118,119,
-        5,30,0,0,119,121,1,0,0,0,120,92,1,0,0,0,120,95,1,0,0,0,120,100,1,
-        0,0,0,120,101,1,0,0,0,120,102,1,0,0,0,120,109,1,0,0,0,120,116,1,
-        0,0,0,121,136,1,0,0,0,122,123,10,6,0,0,123,124,5,26,0,0,124,135,
-        3,6,3,7,125,126,10,5,0,0,126,127,5,27,0,0,127,135,3,6,3,6,128,129,
-        10,2,0,0,129,130,5,7,0,0,130,131,3,4,2,0,131,132,5,8,0,0,132,133,
-        3,6,3,3,133,135,1,0,0,0,134,122,1,0,0,0,134,125,1,0,0,0,134,128,
-        1,0,0,0,135,138,1,0,0,0,136,134,1,0,0,0,136,137,1,0,0,0,137,7,1,
-        0,0,0,138,136,1,0,0,0,12,11,18,23,29,38,42,79,87,89,120,134,136
+        1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,3,3,124,8,3,1,3,1,3,1,3,1,3,
+        1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,5,3,138,8,3,10,3,12,3,141,9,3,1,
+        3,0,2,4,6,4,0,2,4,6,0,0,167,0,11,1,0,0,0,2,42,1,0,0,0,4,79,1,0,0,
+        0,6,123,1,0,0,0,8,10,5,33,0,0,9,8,1,0,0,0,10,13,1,0,0,0,11,9,1,0,
+        0,0,11,12,1,0,0,0,12,14,1,0,0,0,13,11,1,0,0,0,14,23,3,2,1,0,15,17,
+        5,33,0,0,16,15,1,0,0,0,17,18,1,0,0,0,18,16,1,0,0,0,18,19,1,0,0,0,
+        19,20,1,0,0,0,20,22,3,2,1,0,21,16,1,0,0,0,22,25,1,0,0,0,23,21,1,
+        0,0,0,23,24,1,0,0,0,24,29,1,0,0,0,25,23,1,0,0,0,26,28,5,33,0,0,27,
+        26,1,0,0,0,28,31,1,0,0,0,29,27,1,0,0,0,29,30,1,0,0,0,30,32,1,0,0,
+        0,31,29,1,0,0,0,32,33,5,0,0,1,33,1,1,0,0,0,34,35,5,11,0,0,35,38,
+        5,23,0,0,36,39,3,4,2,0,37,39,3,6,3,0,38,36,1,0,0,0,38,37,1,0,0,0,
+        39,43,1,0,0,0,40,41,5,4,0,0,41,43,5,11,0,0,42,34,1,0,0,0,42,40,1,
+        0,0,0,43,3,1,0,0,0,44,45,6,2,-1,0,45,80,5,12,0,0,46,47,3,6,3,0,47,
+        48,5,19,0,0,48,49,3,6,3,0,49,80,1,0,0,0,50,51,3,6,3,0,51,52,5,20,
+        0,0,52,53,3,6,3,0,53,80,1,0,0,0,54,55,3,6,3,0,55,56,5,17,0,0,56,
+        57,3,6,3,0,57,80,1,0,0,0,58,59,3,6,3,0,59,60,5,18,0,0,60,61,3,6,
+        3,0,61,80,1,0,0,0,62,63,3,6,3,0,63,64,5,21,0,0,64,65,3,6,3,0,65,
+        80,1,0,0,0,66,67,3,6,3,0,67,68,5,22,0,0,68,69,3,6,3,0,69,80,1,0,
+        0,0,70,71,5,16,0,0,71,80,3,4,2,5,72,80,5,5,0,0,73,80,5,6,0,0,74,
+        80,5,11,0,0,75,76,5,30,0,0,76,77,3,4,2,0,77,78,5,31,0,0,78,80,1,
+        0,0,0,79,44,1,0,0,0,79,46,1,0,0,0,79,50,1,0,0,0,79,54,1,0,0,0,79,
+        58,1,0,0,0,79,62,1,0,0,0,79,66,1,0,0,0,79,70,1,0,0,0,79,72,1,0,0,
+        0,79,73,1,0,0,0,79,74,1,0,0,0,79,75,1,0,0,0,80,89,1,0,0,0,81,82,
+        10,7,0,0,82,83,5,14,0,0,83,88,3,4,2,8,84,85,10,6,0,0,85,86,5,15,
+        0,0,86,88,3,4,2,7,87,81,1,0,0,0,87,84,1,0,0,0,88,91,1,0,0,0,89,87,
+        1,0,0,0,89,90,1,0,0,0,90,5,1,0,0,0,91,89,1,0,0,0,92,93,6,3,-1,0,
+        93,94,5,29,0,0,94,124,3,4,2,0,95,96,5,29,0,0,96,97,5,1,0,0,97,98,
+        5,11,0,0,98,99,5,2,0,0,99,124,3,4,2,0,100,124,5,11,0,0,101,124,5,
+        13,0,0,102,103,5,13,0,0,103,104,5,28,0,0,104,124,3,6,3,5,105,106,
+        5,10,0,0,106,107,5,30,0,0,107,108,3,6,3,0,108,109,5,32,0,0,109,110,
+        3,6,3,0,110,111,5,31,0,0,111,124,1,0,0,0,112,113,5,9,0,0,113,114,
+        5,30,0,0,114,115,3,6,3,0,115,116,5,32,0,0,116,117,3,6,3,0,117,118,
+        5,31,0,0,118,124,1,0,0,0,119,120,5,30,0,0,120,121,3,6,3,0,121,122,
+        5,31,0,0,122,124,1,0,0,0,123,92,1,0,0,0,123,95,1,0,0,0,123,100,1,
+        0,0,0,123,101,1,0,0,0,123,102,1,0,0,0,123,105,1,0,0,0,123,112,1,
+        0,0,0,123,119,1,0,0,0,124,139,1,0,0,0,125,126,10,7,0,0,126,127,5,
+        26,0,0,127,138,3,6,3,8,128,129,10,6,0,0,129,130,5,27,0,0,130,138,
+        3,6,3,7,131,132,10,2,0,0,132,133,5,7,0,0,133,134,3,4,2,0,134,135,
+        5,8,0,0,135,136,3,6,3,3,136,138,1,0,0,0,137,125,1,0,0,0,137,128,
+        1,0,0,0,137,131,1,0,0,0,138,141,1,0,0,0,139,137,1,0,0,0,139,140,
+        1,0,0,0,140,7,1,0,0,0,141,139,1,0,0,0,12,11,18,23,29,38,42,79,87,
+        89,123,137,139
     ]
 
 class craspParser ( Parser ):
@@ -74,15 +76,15 @@ class craspParser ( Parser ):
                      "'true'", "'false'", "'if'", "'else'", "'min'", "'max'", 
                      "<INVALID>", "<INVALID>", "<INVALID>", "'&&'", "'||'", 
                      "'!'", "'=='", "'!='", "'<'", "'>'", "'<='", "'>='", 
-                     "'='", "'?'", "':'", "'+'", "'-'", "'#'", "'('", "')'", 
-                     "','" ]
+                     "'='", "'?'", "':'", "'+'", "'-'", "'*'", "'#'", "'('", 
+                     "')'", "','" ]
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "LINE_COMMENT", 
                       "IMPORT", "TRUE", "FALSE", "IF", "ELSE", "MIN", "MAX", 
                       "VARIABLE", "STRING_LITERAL", "INT_LITERAL", "AND", 
                       "OR", "NOT", "EQ", "NEQ", "LT", "GT", "LEQ", "GEQ", 
-                      "ASSIGN", "QUESTION", "COLON", "PLUS", "MINUS", "COUNT", 
-                      "LPAREN", "RPAREN", "COMMA", "NL", "WS" ]
+                      "ASSIGN", "QUESTION", "COLON", "PLUS", "MINUS", "TIMES", 
+                      "COUNT", "LPAREN", "RPAREN", "COMMA", "NL", "WS" ]
 
     RULE_program = 0
     RULE_statement = 1
@@ -119,12 +121,13 @@ class craspParser ( Parser ):
     COLON=25
     PLUS=26
     MINUS=27
-    COUNT=28
-    LPAREN=29
-    RPAREN=30
-    COMMA=31
-    NL=32
-    WS=33
+    TIMES=28
+    COUNT=29
+    LPAREN=30
+    RPAREN=31
+    COMMA=32
+    NL=33
+    WS=34
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -188,7 +191,7 @@ class craspParser ( Parser ):
             self.state = 11
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==32:
+            while _la==33:
                 self.state = 8
                 self.match(craspParser.NL)
                 self.state = 13
@@ -211,7 +214,7 @@ class craspParser ( Parser ):
                         self.state = 18 
                         self._errHandler.sync(self)
                         _la = self._input.LA(1)
-                        if not (_la==32):
+                        if not (_la==33):
                             break
 
                     self.state = 20
@@ -223,7 +226,7 @@ class craspParser ( Parser ):
             self.state = 29
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==32:
+            while _la==33:
                 self.state = 26
                 self.match(craspParser.NL)
                 self.state = 31
@@ -593,11 +596,8 @@ class craspParser ( Parser ):
         def INT_LITERAL(self):
             return self.getToken(craspParser.INT_LITERAL, 0)
 
-        def MAX(self):
-            return self.getToken(craspParser.MAX, 0)
-
-        def LPAREN(self):
-            return self.getToken(craspParser.LPAREN, 0)
+        def TIMES(self):
+            return self.getToken(craspParser.TIMES, 0)
 
         def count_expr(self, i:int=None):
             if i is None:
@@ -605,6 +605,12 @@ class craspParser ( Parser ):
             else:
                 return self.getTypedRuleContext(craspParser.Count_exprContext,i)
 
+
+        def MAX(self):
+            return self.getToken(craspParser.MAX, 0)
+
+        def LPAREN(self):
+            return self.getToken(craspParser.LPAREN, 0)
 
         def COMMA(self):
             return self.getToken(craspParser.COMMA, 0)
@@ -655,7 +661,7 @@ class craspParser ( Parser ):
         self.enterRecursionRule(localctx, 6, self.RULE_count_expr, _p)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 120
+            self.state = 123
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,9,self._ctx)
             if la_ == 1:
@@ -690,46 +696,55 @@ class craspParser ( Parser ):
 
             elif la_ == 5:
                 self.state = 102
-                self.match(craspParser.MAX)
+                self.match(craspParser.INT_LITERAL)
                 self.state = 103
-                self.match(craspParser.LPAREN)
+                self.match(craspParser.TIMES)
                 self.state = 104
-                self.count_expr(0)
-                self.state = 105
-                self.match(craspParser.COMMA)
-                self.state = 106
-                self.count_expr(0)
-                self.state = 107
-                self.match(craspParser.RPAREN)
+                self.count_expr(5)
                 pass
 
             elif la_ == 6:
-                self.state = 109
-                self.match(craspParser.MIN)
-                self.state = 110
+                self.state = 105
+                self.match(craspParser.MAX)
+                self.state = 106
                 self.match(craspParser.LPAREN)
-                self.state = 111
+                self.state = 107
                 self.count_expr(0)
-                self.state = 112
+                self.state = 108
                 self.match(craspParser.COMMA)
-                self.state = 113
+                self.state = 109
                 self.count_expr(0)
-                self.state = 114
+                self.state = 110
                 self.match(craspParser.RPAREN)
                 pass
 
             elif la_ == 7:
-                self.state = 116
+                self.state = 112
+                self.match(craspParser.MIN)
+                self.state = 113
                 self.match(craspParser.LPAREN)
-                self.state = 117
+                self.state = 114
                 self.count_expr(0)
-                self.state = 118
+                self.state = 115
+                self.match(craspParser.COMMA)
+                self.state = 116
+                self.count_expr(0)
+                self.state = 117
+                self.match(craspParser.RPAREN)
+                pass
+
+            elif la_ == 8:
+                self.state = 119
+                self.match(craspParser.LPAREN)
+                self.state = 120
+                self.count_expr(0)
+                self.state = 121
                 self.match(craspParser.RPAREN)
                 pass
 
 
             self._ctx.stop = self._input.LT(-1)
-            self.state = 136
+            self.state = 139
             self._errHandler.sync(self)
             _alt = self._interp.adaptivePredict(self._input,11,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
@@ -737,54 +752,54 @@ class craspParser ( Parser ):
                     if self._parseListeners is not None:
                         self.triggerExitRuleEvent()
                     _prevctx = localctx
-                    self.state = 134
+                    self.state = 137
                     self._errHandler.sync(self)
                     la_ = self._interp.adaptivePredict(self._input,10,self._ctx)
                     if la_ == 1:
                         localctx = craspParser.Count_exprContext(self, _parentctx, _parentState)
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_count_expr)
-                        self.state = 122
-                        if not self.precpred(self._ctx, 6):
+                        self.state = 125
+                        if not self.precpred(self._ctx, 7):
                             from antlr4.error.Errors import FailedPredicateException
-                            raise FailedPredicateException(self, "self.precpred(self._ctx, 6)")
-                        self.state = 123
+                            raise FailedPredicateException(self, "self.precpred(self._ctx, 7)")
+                        self.state = 126
                         self.match(craspParser.PLUS)
-                        self.state = 124
-                        self.count_expr(7)
+                        self.state = 127
+                        self.count_expr(8)
                         pass
 
                     elif la_ == 2:
                         localctx = craspParser.Count_exprContext(self, _parentctx, _parentState)
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_count_expr)
-                        self.state = 125
-                        if not self.precpred(self._ctx, 5):
+                        self.state = 128
+                        if not self.precpred(self._ctx, 6):
                             from antlr4.error.Errors import FailedPredicateException
-                            raise FailedPredicateException(self, "self.precpred(self._ctx, 5)")
-                        self.state = 126
+                            raise FailedPredicateException(self, "self.precpred(self._ctx, 6)")
+                        self.state = 129
                         self.match(craspParser.MINUS)
-                        self.state = 127
-                        self.count_expr(6)
+                        self.state = 130
+                        self.count_expr(7)
                         pass
 
                     elif la_ == 3:
                         localctx = craspParser.Count_exprContext(self, _parentctx, _parentState)
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_count_expr)
-                        self.state = 128
+                        self.state = 131
                         if not self.precpred(self._ctx, 2):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
-                        self.state = 129
-                        self.match(craspParser.IF)
-                        self.state = 130
-                        self.bool_expr(0)
-                        self.state = 131
-                        self.match(craspParser.ELSE)
                         self.state = 132
+                        self.match(craspParser.IF)
+                        self.state = 133
+                        self.bool_expr(0)
+                        self.state = 134
+                        self.match(craspParser.ELSE)
+                        self.state = 135
                         self.count_expr(3)
                         pass
 
              
-                self.state = 138
+                self.state = 141
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,11,self._ctx)
 
@@ -820,11 +835,11 @@ class craspParser ( Parser ):
 
     def count_expr_sempred(self, localctx:Count_exprContext, predIndex:int):
             if predIndex == 2:
-                return self.precpred(self._ctx, 6)
+                return self.precpred(self._ctx, 7)
          
 
             if predIndex == 3:
-                return self.precpred(self._ctx, 5)
+                return self.precpred(self._ctx, 6)
          
 
             if predIndex == 4:

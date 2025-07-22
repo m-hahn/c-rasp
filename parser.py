@@ -134,6 +134,12 @@ class MyCraspVisitor(CRaspVisitor):
                 right=self.visit(ctx.count_expr(1))
             )
 
+        elif ctx.TIMES():
+            return MultiplicationOp(
+                factor=int(ctx.INT_LITERAL().getText()),
+                expr=self.visit(ctx.count_expr(0))
+            )
+
         elif ctx.MAX():
             return BinaryOp(
                 op="max",
