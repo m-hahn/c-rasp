@@ -1,4 +1,9 @@
 
+// Describes the language { br(x) br(x+1) | 0 <= x <= 14 }, where
+// br(x) is the reversed binary representation of x, padded to four digits:
+// i.e. br(3) = 1100.
+// This is one step up in complexity from COPY4.
+
 #import pred4
 
 // count ones strictly to my left
