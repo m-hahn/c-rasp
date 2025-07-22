@@ -1,0 +1,9 @@
+
+// correct
+a b c b a b c b
+
+// incorrect for various reasons
+a b c a b c
+a b c c c  a b c c c
+a b c d a b c b
+a b c b a b c b a

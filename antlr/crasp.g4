@@ -22,10 +22,10 @@ bool_expr:
     | bool_expr AND bool_expr
     | bool_expr OR bool_expr
     | NOT bool_expr
-    | VARIABLE
-    | LPAREN bool_expr RPAREN
     | TRUE
     | FALSE
+    | VARIABLE
+    | LPAREN bool_expr RPAREN
     ;
     
 count_expr:
@@ -50,12 +50,12 @@ count_expr:
 LINE_COMMENT: '//' ~[\r\n]* -> skip;
 
 IMPORT: '#import';
+TRUE : 'true';
+FALSE: 'false';
 
 VARIABLE: [a-zA-Z_][a-zA-Z_0-9]*;
 STRING_LITERAL: '"' (~["])* '"';
 INT_LITERAL : [0-9]+ ;
-TRUE : 'true';
-FALSE: 'false';
 
 IF: 'if';
 ELSE: 'else';

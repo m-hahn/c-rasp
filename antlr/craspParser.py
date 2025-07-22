@@ -27,25 +27,25 @@ def serializedATN():
         0,20,22,3,2,1,0,21,16,1,0,0,0,22,25,1,0,0,0,23,21,1,0,0,0,23,24,
         1,0,0,0,24,29,1,0,0,0,25,23,1,0,0,0,26,28,5,32,0,0,27,26,1,0,0,0,
         28,31,1,0,0,0,29,27,1,0,0,0,29,30,1,0,0,0,30,32,1,0,0,0,31,29,1,
-        0,0,0,32,33,5,0,0,1,33,1,1,0,0,0,34,35,5,5,0,0,35,38,5,21,0,0,36,
+        0,0,0,32,33,5,0,0,1,33,1,1,0,0,0,34,35,5,7,0,0,35,38,5,21,0,0,36,
         39,3,4,2,0,37,39,3,6,3,0,38,36,1,0,0,0,38,37,1,0,0,0,39,43,1,0,0,
-        0,40,41,5,4,0,0,41,43,5,5,0,0,42,34,1,0,0,0,42,40,1,0,0,0,43,3,1,
-        0,0,0,44,45,6,2,-1,0,45,80,5,6,0,0,46,47,3,6,3,0,47,48,5,17,0,0,
+        0,40,41,5,4,0,0,41,43,5,7,0,0,42,34,1,0,0,0,42,40,1,0,0,0,43,3,1,
+        0,0,0,44,45,6,2,-1,0,45,80,5,8,0,0,46,47,3,6,3,0,47,48,5,17,0,0,
         48,49,3,6,3,0,49,80,1,0,0,0,50,51,3,6,3,0,51,52,5,18,0,0,52,53,3,
         6,3,0,53,80,1,0,0,0,54,55,3,6,3,0,55,56,5,15,0,0,56,57,3,6,3,0,57,
         80,1,0,0,0,58,59,3,6,3,0,59,60,5,16,0,0,60,61,3,6,3,0,61,80,1,0,
         0,0,62,63,3,6,3,0,63,64,5,19,0,0,64,65,3,6,3,0,65,80,1,0,0,0,66,
         67,3,6,3,0,67,68,5,20,0,0,68,69,3,6,3,0,69,80,1,0,0,0,70,71,5,14,
-        0,0,71,80,3,4,2,5,72,80,5,5,0,0,73,74,5,29,0,0,74,75,3,4,2,0,75,
-        76,5,30,0,0,76,80,1,0,0,0,77,80,5,8,0,0,78,80,5,9,0,0,79,44,1,0,
-        0,0,79,46,1,0,0,0,79,50,1,0,0,0,79,54,1,0,0,0,79,58,1,0,0,0,79,62,
+        0,0,71,80,3,4,2,5,72,80,5,5,0,0,73,80,5,6,0,0,74,80,5,7,0,0,75,76,
+        5,29,0,0,76,77,3,4,2,0,77,78,5,30,0,0,78,80,1,0,0,0,79,44,1,0,0,
+        0,79,46,1,0,0,0,79,50,1,0,0,0,79,54,1,0,0,0,79,58,1,0,0,0,79,62,
         1,0,0,0,79,66,1,0,0,0,79,70,1,0,0,0,79,72,1,0,0,0,79,73,1,0,0,0,
-        79,77,1,0,0,0,79,78,1,0,0,0,80,89,1,0,0,0,81,82,10,7,0,0,82,83,5,
+        79,74,1,0,0,0,79,75,1,0,0,0,80,89,1,0,0,0,81,82,10,7,0,0,82,83,5,
         12,0,0,83,88,3,4,2,8,84,85,10,6,0,0,85,86,5,13,0,0,86,88,3,4,2,7,
         87,81,1,0,0,0,87,84,1,0,0,0,88,91,1,0,0,0,89,87,1,0,0,0,89,90,1,
         0,0,0,90,5,1,0,0,0,91,89,1,0,0,0,92,93,6,3,-1,0,93,94,5,28,0,0,94,
-        121,3,4,2,0,95,96,5,28,0,0,96,97,5,1,0,0,97,98,5,5,0,0,98,99,5,2,
-        0,0,99,121,3,4,2,0,100,121,5,5,0,0,101,121,5,7,0,0,102,103,5,27,
+        121,3,4,2,0,95,96,5,28,0,0,96,97,5,1,0,0,97,98,5,7,0,0,98,99,5,2,
+        0,0,99,121,3,4,2,0,100,121,5,7,0,0,101,121,5,9,0,0,102,103,5,27,
         0,0,103,104,5,29,0,0,104,105,3,6,3,0,105,106,5,31,0,0,106,107,3,
         6,3,0,107,108,5,30,0,0,108,121,1,0,0,0,109,110,5,26,0,0,110,111,
         5,29,0,0,111,112,3,6,3,0,112,113,5,31,0,0,113,114,3,6,3,0,114,115,
@@ -71,16 +71,16 @@ class craspParser ( Parser ):
     sharedContextCache = PredictionContextCache()
 
     literalNames = [ "<INVALID>", "'['", "']'", "<INVALID>", "'#import'", 
-                     "<INVALID>", "<INVALID>", "<INVALID>", "'true'", "'false'", 
+                     "'true'", "'false'", "<INVALID>", "<INVALID>", "<INVALID>", 
                      "'if'", "'else'", "'&&'", "'||'", "'!'", "'=='", "'!='", 
                      "'<'", "'>'", "'<='", "'>='", "'='", "'?'", "':'", 
                      "'+'", "'-'", "'min'", "'max'", "'#'", "'('", "')'", 
                      "','" ]
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "LINE_COMMENT", 
-                      "IMPORT", "VARIABLE", "STRING_LITERAL", "INT_LITERAL", 
-                      "TRUE", "FALSE", "IF", "ELSE", "AND", "OR", "NOT", 
-                      "EQ", "NEQ", "LT", "GT", "LEQ", "GEQ", "ASSIGN", "QUESTION", 
+                      "IMPORT", "TRUE", "FALSE", "VARIABLE", "STRING_LITERAL", 
+                      "INT_LITERAL", "IF", "ELSE", "AND", "OR", "NOT", "EQ", 
+                      "NEQ", "LT", "GT", "LEQ", "GEQ", "ASSIGN", "QUESTION", 
                       "COLON", "PLUS", "MINUS", "MIN", "MAX", "COUNT", "LPAREN", 
                       "RPAREN", "COMMA", "NL", "WS" ]
 
@@ -96,11 +96,11 @@ class craspParser ( Parser ):
     T__1=2
     LINE_COMMENT=3
     IMPORT=4
-    VARIABLE=5
-    STRING_LITERAL=6
-    INT_LITERAL=7
-    TRUE=8
-    FALSE=9
+    TRUE=5
+    FALSE=6
+    VARIABLE=7
+    STRING_LITERAL=8
+    INT_LITERAL=9
     IF=10
     ELSE=11
     AND=12
@@ -293,7 +293,7 @@ class craspParser ( Parser ):
             self.state = 42
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [5]:
+            if token in [7]:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 34
                 self.match(craspParser.VARIABLE)
@@ -378,6 +378,12 @@ class craspParser ( Parser ):
                 return self.getTypedRuleContext(craspParser.Bool_exprContext,i)
 
 
+        def TRUE(self):
+            return self.getToken(craspParser.TRUE, 0)
+
+        def FALSE(self):
+            return self.getToken(craspParser.FALSE, 0)
+
         def VARIABLE(self):
             return self.getToken(craspParser.VARIABLE, 0)
 
@@ -386,12 +392,6 @@ class craspParser ( Parser ):
 
         def RPAREN(self):
             return self.getToken(craspParser.RPAREN, 0)
-
-        def TRUE(self):
-            return self.getToken(craspParser.TRUE, 0)
-
-        def FALSE(self):
-            return self.getToken(craspParser.FALSE, 0)
 
         def AND(self):
             return self.getToken(craspParser.AND, 0)
@@ -498,26 +498,26 @@ class craspParser ( Parser ):
 
             elif la_ == 9:
                 self.state = 72
-                self.match(craspParser.VARIABLE)
+                self.match(craspParser.TRUE)
                 pass
 
             elif la_ == 10:
                 self.state = 73
-                self.match(craspParser.LPAREN)
-                self.state = 74
-                self.bool_expr(0)
-                self.state = 75
-                self.match(craspParser.RPAREN)
+                self.match(craspParser.FALSE)
                 pass
 
             elif la_ == 11:
-                self.state = 77
-                self.match(craspParser.TRUE)
+                self.state = 74
+                self.match(craspParser.VARIABLE)
                 pass
 
             elif la_ == 12:
-                self.state = 78
-                self.match(craspParser.FALSE)
+                self.state = 75
+                self.match(craspParser.LPAREN)
+                self.state = 76
+                self.bool_expr(0)
+                self.state = 77
+                self.match(craspParser.RPAREN)
                 pass
 
 

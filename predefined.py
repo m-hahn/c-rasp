@@ -16,6 +16,10 @@
 def pred(i: int, j: int) -> bool:
     return j == i-1
 
+def pred4(i: int, j: int) -> bool:
+    return j == i-4
+
+
 
 def pos_even(i: int) -> bool:
     return i%2 == 0
