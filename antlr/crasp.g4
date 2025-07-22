@@ -49,16 +49,20 @@ count_expr:
 // starts comments
 LINE_COMMENT: '//' ~[\r\n]* -> skip;
 
+// define keywords before variables
 IMPORT: '#import';
 TRUE : 'true';
 FALSE: 'false';
+IF: 'if';
+ELSE: 'else';
+MIN: 'min';
+MAX: 'max';
+
 
 VARIABLE: [a-zA-Z_][a-zA-Z_0-9]*;
 STRING_LITERAL: '"' (~["])* '"';
 INT_LITERAL : [0-9]+ ;
 
-IF: 'if';
-ELSE: 'else';
 
 AND : '&&' ;
 OR : '||';
@@ -76,8 +80,6 @@ QUESTION: '?';
 COLON: ':';
 PLUS: '+';
 MINUS: '-';
-MIN: 'min';
-MAX: 'max';
 
 COUNT : '#';
 
