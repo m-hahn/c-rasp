@@ -187,6 +187,10 @@ class MajorityDataset(IterableDataset):
             
             yield instance, pos_ids, label
 
+class RegLanguage(object):
+   def __init__(self) -> None:
+       pass
+
 class MajorityLanguage(RegLanguage):
 
     def __init__(self) -> None:
@@ -205,6 +209,44 @@ class MajorityLanguage(RegLanguage):
     
     def is_valid_length(self, length):
         return (length >= 0)
+
+
+class Dyck1Language(RegLanguage):
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.sigma = ["a", "b"]
+
+    def belongs_to_lang(self, seq):
+        balance = 0
+        for c in seq:
+           balance += 1 if c == "a" else -1
+           if balance < 0:
+             return False
+        return balance == 0
+
+    def generate_pos_sample(self, min_length: int, max_length: int) -> str:
+        while True:
+           generated = []
+           balance = 0
+           for i in range(max_length):
+              c = "b" if random.random() > 0.5 and balance > 0 else "a"
+              balance += 1 if c == "a" else -1
+              generated.append(c)
+              print(generated, balance, len(generated))
+              if i >= min_length and balance == 0:
+               if random.random() > (max_length - i) / (max_length-min_length):
+                  break
+           if balance==0:
+              return "".join(generated)
+    
+    def is_valid_length(self, length):
+        return (length >= 0)
+
+
+data = Dyck1Language()
+print(data.generate_pos_sample(50, 150))
+quit()
 
 data = MajorityDataset(customTokenizer(), (1, 10), 20).__iter__()
 
