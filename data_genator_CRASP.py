@@ -13,7 +13,7 @@ class customTokenizer(object):
    def __len__(self):
        return self.vocab_size
 
-class UniqueReverseDataset(IterableDataset):
+class AnBnDataset(IterableDataset):
     def __init__(self, tokenizer: customTokenizer, length_range: tuple[int, int], max_test_length: int):
         super().__init__()
         self.tokenizer = tokenizer 
@@ -22,37 +22,40 @@ class UniqueReverseDataset(IterableDataset):
         self.max_test_length = max_test_length
         assert len(tokenizer) - 4 >= max_test_length
         assert (max_test_length >= self.range_max) or (max_test_length == -1)    # the pos emb is initialized based on max_test_length
-
+        self.mapping = {("a",) : 5, ("b",) : 6, ("a", "b") : 7, ("$",) : 8}
     def __iter__(self):
         while True:
             length = random.randint(self.range_min, self.range_max)     # length of string to be copied
-            
+#            length = (length//2) + 1
             temp = random.sample(range(len(self.tokenizer)-4), length)
             instance = [self.tokenizer.bos_token_id]
-            instance.extend(temp)
-            instance.append(self.tokenizer.sep_token_id)
-            instance.extend(temp[::-1])
+            label = [("a",)]
+            for _ in range(length//2):
+              instance.append(("a",))
+              label.append(("a", "b"))
+            for i in range(length//2):
+              instance.append(("b",))
+              if i < length//2 - 1:
+                label.append(("a", "b"))
+              else:
+                label.append(("$",))
+            instance = [self.mapping.get(x, x) for x in instance]
+            label = [self.mapping.get(x, x) for x in label]
             instance.append(self.tokenizer.eos_token_id)
-            label = deepcopy(instance)
-
-
-
-
-
-            # setting some tokens to [pad] will make the loss on these tokens (as pred targets) be ignored
-            label[:length+2] = [self.tokenizer.pad_token_id,] * (length+2)   # bos + ... + sep 
+            label.append(self.tokenizer.pad_token_id)
            
+
             # positional 
             if self.max_test_length != -1:
                 offset = random.randint(0, (self.max_test_length - length) * 2)
             else:
                 offset = 0
             pos_ids = list(range(offset, len(instance)+offset))
-
+            
             yield instance, pos_ids, label
 
 print("Testing UniqueReverseDataset...")
-data = UniqueReverseDataset(customTokenizer(), (1, 10), 20).__iter__()
+data = AnBnDataset(customTokenizer(), (1, 10), 20).__iter__()
 
 for _ in range(10):
    print(next(data))
