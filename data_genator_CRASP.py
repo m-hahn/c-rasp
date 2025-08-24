@@ -194,7 +194,7 @@ class MajorityLanguage(RegLanguage):
         self.sigma = ["a", "b"]
 
     def belongs_to_lang(self, seq):
-        balance = sum([1 if x == "a" else -1])
+        balance = sum([1 if x == "a" else -1 for x in seq])
         return balance > 0
 
     def generate_pos_sample(self, min_length: int, max_length: int) -> str:
