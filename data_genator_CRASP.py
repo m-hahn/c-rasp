@@ -187,7 +187,24 @@ class MajorityDataset(IterableDataset):
             
             yield instance, pos_ids, label
 
+class MajorityLanguage(RegLanguage):
 
+    def __init__(self) -> None:
+        super().__init__()
+        self.sigma = ["a", "b"]
+
+    def belongs_to_lang(self, seq):
+        balance = sum([1 if x == "a" else -1])
+        return balance > 0
+
+    def generate_pos_sample(self, min_length: int, max_length: int) -> str:
+        while True:
+           generated  = ["a" if random.random() > 0.5 else "b" for _ in range(random.randint(min_length, max_length))]
+           if self.belongs_to_lang(generated):
+              return "".join(generated)
+    
+    def is_valid_length(self, length):
+        return (length >= 0)
 
 data = MajorityDataset(customTokenizer(), (1, 10), 20).__iter__()
 
