@@ -22,6 +22,8 @@ class AnBnDataset(IterableDataset):
         self.max_test_length = max_test_length
         assert len(tokenizer) - 4 >= max_test_length
         assert (max_test_length >= self.range_max) or (max_test_length == -1)    # the pos emb is initialized based on max_test_length
+        assert self.tokenizer.bos_token_id not in [5, 6, 7, 8]
+        assert self.tokenizer.pad_token_id not in [5, 6, 7, 8]
         self.mapping = {("a",) : 5, ("b",) : 6, ("a", "b") : 7, ("$",) : 8}
     def __iter__(self):
         while True:
@@ -104,9 +106,90 @@ class AnBnCnDataset(IterableDataset):
             yield instance, pos_ids, label
 
 
+class Dyck1Dataset(IterableDataset):
+    def __init__(self, tokenizer: customTokenizer, length_range: tuple[int, int], max_test_length: int):
+        super().__init__()
+        self.tokenizer = tokenizer 
+        self.range_min, self.range_max = length_range
+        self.range_min = max(1, self.range_min)
+        self.max_test_length = max_test_length
+        assert len(tokenizer) - 4 >= max_test_length
+        assert (max_test_length >= self.range_max) or (max_test_length == -1)    # the pos emb is initialized based on max_test_length
+        assert self.tokenizer.bos_token_id not in [5, 6, 7, 8]
+        assert self.tokenizer.pad_token_id not in [5, 6, 7, 8]
+        self.mapping = {("a",) : 5, ("b",) : 6, ("a", "b") : 7, ("a", "$",) : 8, self.tokenizer.bos_token_id : self.tokenizer.bos_token_id}
+    def __iter__(self):
+        while True:
+            length = random.randint(self.range_min, self.range_max)     
+#            length = (length//2) + 1
+            temp = random.sample(range(len(self.tokenizer)-4), length)
+            instance = [self.tokenizer.bos_token_id]
+            label = [("a","$")]
+            balance = 0
+            for _ in range(length):
+              instance.append(("a" if random.random() > 0.5 or balance < 1 else "b",))
+              balance += 1 if instance[-1][0] == "a" else -1
+              label.append((("a", "$") if balance == 0 else ("a", "b")))
+            print(instance, "\t", label)
+            instance = [self.mapping.get(x, x) for x in instance]
+            label = [self.mapping.get(x, x) for x in label]
+            instance.append(self.tokenizer.eos_token_id)
+            label.append(self.tokenizer.pad_token_id)
+           
+
+            # positional 
+            if self.max_test_length != -1:
+                offset = random.randint(0, (self.max_test_length - length) * 2)
+            else:
+                offset = 0
+            pos_ids = list(range(offset, len(instance)+offset))
+            
+            yield instance, pos_ids, label
 
 
-data = AnBnCnDataset(customTokenizer(), (1, 10), 20).__iter__()
+class MajorityDataset(IterableDataset):
+    def __init__(self, tokenizer: customTokenizer, length_range: tuple[int, int], max_test_length: int):
+        super().__init__()
+        self.tokenizer = tokenizer 
+        self.range_min, self.range_max = length_range
+        self.range_min = max(1, self.range_min)
+        self.max_test_length = max_test_length
+        assert len(tokenizer) - 4 >= max_test_length
+        assert (max_test_length >= self.range_max) or (max_test_length == -1)    # the pos emb is initialized based on max_test_length
+        assert self.tokenizer.bos_token_id not in [5, 6, 7, 8]
+        assert self.tokenizer.pad_token_id not in [5, 6, 7, 8]
+        self.mapping = {("a",) : 5, ("b",) : 6, ("a", "b") : 7, ("a", "$",) : 8, self.tokenizer.bos_token_id : self.tokenizer.bos_token_id}
+    def __iter__(self):
+        while True:
+            length = random.randint(self.range_min, self.range_max)     
+#            length = (length//2) + 1
+            temp = random.sample(range(len(self.tokenizer)-4), length)
+            instance = [self.tokenizer.bos_token_id]
+            label = [("a","$")]
+            balance = 0
+            for _ in range(length):
+              instance.append(("a" if random.random() > 0.5 else "b",))
+              balance += 1 if instance[-1][0] == "a" else -1
+              label.append((("a", "b", "$") if balance > 0 else ("a", "b")))
+            print(instance, "\t", label)
+            instance = [self.mapping.get(x, x) for x in instance]
+            label = [self.mapping.get(x, x) for x in label]
+            instance.append(self.tokenizer.eos_token_id)
+            label.append(self.tokenizer.pad_token_id)
+           
+
+            # positional 
+            if self.max_test_length != -1:
+                offset = random.randint(0, (self.max_test_length - length) * 2)
+            else:
+                offset = 0
+            pos_ids = list(range(offset, len(instance)+offset))
+            
+            yield instance, pos_ids, label
+
+
+
+data = MajorityDataset(customTokenizer(), (1, 10), 20).__iter__()
 
 for _ in range(10):
    (next(data))
